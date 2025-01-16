@@ -29,4 +29,10 @@ segments:
     - key: free-pipelines
       name: Pipelines without Instill Credit consumption
       description: Pipelines that don't consume Instill Credit when being executed
+      constraints:
+        - type: STRING_COMPARISON_TYPE
+          property: pipeline_uid
+          operator: eq
+          value: b32b0c6e-670e-484d-bb6f-9becb7efb9fc
+          description: preset/indexing-advanced-convert-doc
       match_type: ANY_MATCH_TYPE
