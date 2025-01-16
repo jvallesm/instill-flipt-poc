@@ -1,0 +1,9 @@
+version: "1.4"
+namespace:
+    key: default
+    name: Default
+segments:
+    - key: internal-users
+      name: Internal users
+      description: Instill AI internal users
+      match_type: ANY_MATCH_TYPE
