@@ -35,4 +35,9 @@ segments:
           operator: eq
           value: b32b0c6e-670e-484d-bb6f-9becb7efb9fc
           description: preset/indexing-advanced-convert-doc
+        - type: STRING_COMPARISON_TYPE
+          property: pipeline_uid
+          operator: eq
+          value: 12eaa612-e5ed-4539-a18a-aade5dc15f77
+          description: preset/indexing-embed
       match_type: ANY_MATCH_TYPE
