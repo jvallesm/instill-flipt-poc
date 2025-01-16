@@ -6,6 +6,7 @@ flags:
     - key: credit-free-pipeline
       name: Bypass Credit consumption
       type: BOOLEAN_FLAG_TYPE
+      description: Determines whether Instill Credit should be consumed during pipeline execution
       enabled: false
 segments:
     - key: internal-users
