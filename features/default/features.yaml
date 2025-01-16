@@ -8,6 +8,13 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Determines whether Instill Credit should be consumed during pipeline execution
       enabled: false
+      rollouts:
+        - description: Internal users shouldn't consume credit
+          segment:
+            keys:
+                - internal-users
+            operator: OR_SEGMENT_OPERATOR
+            value: true
 segments:
     - key: internal-users
       name: Internal users
