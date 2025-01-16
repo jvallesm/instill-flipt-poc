@@ -26,3 +26,7 @@ segments:
           value: 67deae2e-93f2-40df-88f8-055d163d2425
           description: Juan
       match_type: ANY_MATCH_TYPE
+    - key: free-pipelines
+      name: Pipelines without Instill Credit consumption
+      description: Pipelines that don't consume Instill Credit when being executed
+      match_type: ANY_MATCH_TYPE
