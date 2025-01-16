@@ -6,4 +6,10 @@ segments:
     - key: internal-users
       name: Internal users
       description: Instill AI internal users
+      constraints:
+        - type: STRING_COMPARISON_TYPE
+          property: namespace_uid
+          operator: eq
+          value: 67deae2e-93f2-40df-88f8-055d163d2425
+          description: Juan
       match_type: ANY_MATCH_TYPE
