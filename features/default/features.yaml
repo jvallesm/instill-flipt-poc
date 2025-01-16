@@ -40,4 +40,9 @@ segments:
           operator: eq
           value: 12eaa612-e5ed-4539-a18a-aade5dc15f77
           description: preset/indexing-embed
+        - type: STRING_COMPARISON_TYPE
+          property: pipeline_uid
+          operator: eq
+          value: 0051dcc3-1ab8-4e3f-be9f-63e7a5ecf591
+          description: preset/indexing-split-text
       match_type: ANY_MATCH_TYPE
