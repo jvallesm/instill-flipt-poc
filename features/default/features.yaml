@@ -15,6 +15,12 @@ flags:
                 - internal-users
             operator: OR_SEGMENT_OPERATOR
             value: true
+        - description: Indexing pipelines are for free
+          segment:
+            keys:
+                - free-pipelines
+            operator: OR_SEGMENT_OPERATOR
+            value: true
 segments:
     - key: internal-users
       name: Internal users
