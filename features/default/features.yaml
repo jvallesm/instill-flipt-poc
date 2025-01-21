@@ -1,54 +1,64 @@
+# exported by Flipt (v1.53.2) on 2025-01-21T15:35:38Z
+
 version: "1.4"
 namespace:
-    key: default
-    name: Default
+  key: default
+  name: Default
+  description: Default namespace
 flags:
-    - key: credit-free-pipeline
-      name: Bypass Credit consumption
-      type: BOOLEAN_FLAG_TYPE
-      description: Determines whether Instill Credit should be consumed during pipeline execution
-      enabled: false
-      rollouts:
-        - description: Internal users shouldn't consume credit
-          segment:
-            keys:
-                - internal-users
-            operator: OR_SEGMENT_OPERATOR
-            value: true
-        - description: Indexing pipelines are for free
-          segment:
-            keys:
-                - free-pipelines
-            operator: OR_SEGMENT_OPERATOR
-            value: true
+- key: pipeline-credit-bypass
+  name: Pipeline credit bypass
+  type: BOOLEAN_FLAG_TYPE
+  description: Determines whether Instill Credit should be consumed during pipeline
+    execution
+  enabled: false
+  rollouts:
+  - description: Free pipelines don't consume credit
+    segment:
+      key: free-pipelines
+      value: true
+  - description: Internal users don't consume credit for any pipeline
+    segment:
+      key: internal-users
+      value: true
 segments:
-    - key: internal-users
-      name: Internal users
-      description: Instill AI internal users
-      constraints:
-        - type: STRING_COMPARISON_TYPE
-          property: namespace_uid
-          operator: eq
-          value: 67deae2e-93f2-40df-88f8-055d163d2425
-          description: Juan
-      match_type: ANY_MATCH_TYPE
-    - key: free-pipelines
-      name: Pipelines without Instill Credit consumption
-      description: Pipelines that don't consume Instill Credit when being executed
-      constraints:
-        - type: STRING_COMPARISON_TYPE
-          property: pipeline_uid
-          operator: eq
-          value: b32b0c6e-670e-484d-bb6f-9becb7efb9fc
-          description: preset/indexing-advanced-convert-doc
-        - type: STRING_COMPARISON_TYPE
-          property: pipeline_uid
-          operator: eq
-          value: 12eaa612-e5ed-4539-a18a-aade5dc15f77
-          description: preset/indexing-embed
-        - type: STRING_COMPARISON_TYPE
-          property: pipeline_uid
-          operator: eq
-          value: 0051dcc3-1ab8-4e3f-be9f-63e7a5ecf591
-          description: preset/indexing-split-text
-      match_type: ANY_MATCH_TYPE
+- key: free-pipelines
+  name: Free pipelines
+  description: Indexing pipelines, used in file processing
+  constraints:
+  - type: STRING_COMPARISON_TYPE
+    property: pipeline-owner-id
+    operator: eq
+    value: preset
+    description: Pipeline owner ID
+  - type: STRING_COMPARISON_TYPE
+    property: pipeline-id
+    operator: prefix
+    value: indexing-
+    description: Indexing pipelines
+  match_type: ALL_MATCH_TYPE
+- key: internal-users
+  name: Internal users
+  description: Instill AI team
+  constraints:
+  - type: ENTITY_ID_COMPARISON_TYPE
+    property: entityId
+    operator: eq
+    value: f47c69b8-ed2e-4103-bf2f-92a93954883b
+    description: Heiru
+  - type: ENTITY_ID_COMPARISON_TYPE
+    property: entityId
+    operator: eq
+    value: 8cbb3b95-5a85-4054-8113-29babc95fc89
+    description: Hui-Tang
+  - type: ENTITY_ID_COMPARISON_TYPE
+    property: entityId
+    operator: eq
+    value: 67deae2e-93f2-40df-88f8-055d163d2425
+    description: Juan
+  - type: ENTITY_ID_COMPARISON_TYPE
+    property: entityId
+    operator: eq
+    value: 4fc3f0ab-fc98-4036-aacb-dcfed08e7597
+    description: George
+  match_type: ANY_MATCH_TYPE
