@@ -1,64 +1,66 @@
-# exported by Flipt (v1.53.2) on 2025-01-21T15:35:38Z
-
 version: "1.4"
 namespace:
-  key: default
-  name: Default
-  description: Default namespace
+    key: default
+    name: Default
+    description: Default namespace
 flags:
-- key: pipeline-credit-bypass
-  name: Pipeline credit bypass
-  type: BOOLEAN_FLAG_TYPE
-  description: Determines whether Instill Credit should be consumed during pipeline
-    execution
-  enabled: false
-  rollouts:
-  - description: Free pipelines don't consume credit
-    segment:
-      key: free-pipelines
-      value: true
-  - description: Internal users don't consume credit for any pipeline
-    segment:
-      key: internal-users
-      value: true
+    - key: pipeline-credit-bypass
+      name: Pipeline credit bypass
+      type: BOOLEAN_FLAG_TYPE
+      description: Determines whether Instill Credit should be consumed during pipeline execution
+      enabled: false
+      rollouts:
+        - description: Free pipelines don't consume credit
+          segment:
+            key: free-pipelines
+            value: true
+        - description: Internal users don't consume credit for any pipeline
+          segment:
+            key: internal-users
+            value: true
 segments:
-- key: free-pipelines
-  name: Free pipelines
-  description: Indexing pipelines, used in file processing
-  constraints:
-  - type: STRING_COMPARISON_TYPE
-    property: pipeline-owner-id
-    operator: eq
-    value: preset
-    description: Pipeline owner ID
-  - type: STRING_COMPARISON_TYPE
-    property: pipeline-id
-    operator: prefix
-    value: indexing-
-    description: Indexing pipelines
-  match_type: ALL_MATCH_TYPE
-- key: internal-users
-  name: Internal users
-  description: Instill AI team
-  constraints:
-  - type: ENTITY_ID_COMPARISON_TYPE
-    property: entityId
-    operator: eq
-    value: f47c69b8-ed2e-4103-bf2f-92a93954883b
-    description: Heiru
-  - type: ENTITY_ID_COMPARISON_TYPE
-    property: entityId
-    operator: eq
-    value: 8cbb3b95-5a85-4054-8113-29babc95fc89
-    description: Hui-Tang
-  - type: ENTITY_ID_COMPARISON_TYPE
-    property: entityId
-    operator: eq
-    value: 67deae2e-93f2-40df-88f8-055d163d2425
-    description: Juan
-  - type: ENTITY_ID_COMPARISON_TYPE
-    property: entityId
-    operator: eq
-    value: 4fc3f0ab-fc98-4036-aacb-dcfed08e7597
-    description: George
-  match_type: ANY_MATCH_TYPE
+    - key: free-pipelines
+      name: Free pipelines
+      description: Indexing pipelines, used in file processing
+      constraints:
+        - type: STRING_COMPARISON_TYPE
+          property: pipeline-owner-id
+          operator: eq
+          value: preset
+          description: Pipeline owner ID
+        - type: STRING_COMPARISON_TYPE
+          property: pipeline-id
+          operator: prefix
+          value: indexing-
+          description: Indexing pipelines
+      match_type: ALL_MATCH_TYPE
+    - key: internal-users
+      name: Internal users
+      description: Instill AI team
+      constraints:
+        - type: ENTITY_ID_COMPARISON_TYPE
+          property: entityId
+          operator: eq
+          value: f47c69b8-ed2e-4103-bf2f-92a93954883b
+          description: Heiru
+        - type: ENTITY_ID_COMPARISON_TYPE
+          property: entityId
+          operator: eq
+          value: 8cbb3b95-5a85-4054-8113-29babc95fc89
+          description: Hui-Tang
+        - type: ENTITY_ID_COMPARISON_TYPE
+          property: entityId
+          operator: eq
+          value: 67deae2e-93f2-40df-88f8-055d163d2425
+          description: Juan
+        - type: ENTITY_ID_COMPARISON_TYPE
+          property: entityId
+          operator: eq
+          value: 4fc3f0ab-fc98-4036-aacb-dcfed08e7597
+          description: George
+        - type: ENTITY_ID_COMPARISON_TYPE
+          property: entityId
+          operator: eq
+          value: 7e9fe422-9947-43d3-98c7-b6dd72965f8a
+          description: foo
+      match_type: ANY_MATCH_TYPE
