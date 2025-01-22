@@ -58,9 +58,4 @@ segments:
           operator: eq
           value: 4fc3f0ab-fc98-4036-aacb-dcfed08e7597
           description: George
-        - type: ENTITY_ID_COMPARISON_TYPE
-          property: entityId
-          operator: eq
-          value: 7e9fe422-9947-43d3-98c7-b6dd72965f8a
-          description: foo
       match_type: ANY_MATCH_TYPE
